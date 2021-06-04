@@ -36,6 +36,7 @@ main div:hover,section img:hover{
   cursor:pointer;
 }
 #chart{
+  display: none;
   height:450px;
   width: 900px;
   margin: auto;

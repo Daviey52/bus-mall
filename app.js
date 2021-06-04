@@ -55,7 +55,6 @@ function renderProducts() {
   let productTwo = renderUniqueQueue.shift();
   let productOne = renderUniqueQueue.shift();
 
-
   imageOne.src = allProducts[productOne].src;
   imageOne.alt = allProducts[productOne].name;
   allProducts[productOne].views++;
@@ -102,6 +101,7 @@ function handleButtonClick(event) {//eslint-disable-line
     renderResults();
 
   }
+  myButton.removeEventListener('click', handleButtonClick);
 }
 renderProducts();
 
@@ -115,9 +115,6 @@ function renderChart() {
     viewsArray.push(allProducts[i].views);
     namesArray.push(allProducts[i].name);
   }
-  console.log(`${clicksArray}
-  ${viewsArray}
-  ${namesArray}`);
 
   let chartNew = {
     type: 'bar',
