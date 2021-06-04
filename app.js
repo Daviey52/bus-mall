@@ -51,12 +51,9 @@ function renderProducts() {
     }
   }
 
-  let productThree = renderUniqueQueue.pop();
-  let productTwo = renderUniqueQueue.pop();
-  let productOne = renderUniqueQueue.pop();
-
-
-  console.log(productOne, productTwo, productThree);
+  let productThree = renderUniqueQueue.shift();
+  let productTwo = renderUniqueQueue.shift();
+  let productOne = renderUniqueQueue.shift();
 
 
   imageOne.src = allProducts[productOne].src;
@@ -129,14 +126,14 @@ function renderChart() {
       datasets: [{
         label: '# of Clicks',
         data: clicksArray,
-        backgroundColor: 'rgba(153, 102, 255, 0.2)',
-        borderColor: 'rgba(153, 102, 255, 1)',
+        backgroundColor: 'orange',
+        borderColor: 'orange',
         borderWidth: 1
       },
       {
         label: '# of Views',
         data: viewsArray,
-        backgroundColor: 'red',
+        backgroundColor: 'blue',
         borderColor: 'Orange',
         borderWidth: 1
       }]
@@ -153,7 +150,6 @@ function renderChart() {
   let myChart = new Chart(ctx, chartNew); //eslint-disable-line
 
 }
-
 
 myContainer.addEventListener('click', handleProductRender);
 myButton.addEventListener('click', handleButtonClick);
