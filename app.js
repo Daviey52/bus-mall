@@ -20,25 +20,33 @@ function Product(name, fileExtension = 'jpg') {
   allProducts.push(this);
 }
 
-new Product('boots');
-new Product('sweep', 'png');
-new Product('bag');
-new Product('banana');
-new Product('bathroom');
-new Product('breakfast');
-new Product('bubblegum');
-new Product('chair');
-new Product('cthulhu');
-new Product('dog-duck');
-new Product('dragon');
-new Product('pen');
-new Product('pet-sweep');
-new Product('scissors');
-new Product('shark');
-new Product('tauntaun');
-new Product('unicorn');
-new Product('water-can');
-new Product('wine-glass');
+let retrievedAllProduct = localStorage.getItem('products');
+
+if (retrievedAllProduct) {
+  let parsedAllProduct = JSON.parse(retrievedAllProduct);
+  allProducts = parsedAllProduct;
+} else {
+
+  new Product('boots');
+  new Product('sweep', 'png');
+  new Product('bag');
+  new Product('banana');
+  new Product('bathroom');
+  new Product('breakfast');
+  new Product('bubblegum');
+  new Product('chair');
+  new Product('cthulhu');
+  new Product('dog-duck');
+  new Product('dragon');
+  new Product('pen');
+  new Product('pet-sweep');
+  new Product('scissors');
+  new Product('shark');
+  new Product('tauntaun');
+  new Product('unicorn');
+  new Product('water-can');
+  new Product('wine-glass');
+}
 
 function selectRandomProductIndex() {
   return Math.floor(Math.random() * allProducts.length);
@@ -84,7 +92,8 @@ function handleProductRender(event) {
     myContainer.removeEventListener('click', handleProductRender);
     document.querySelector('#chart').style.display = 'block';
     renderChart();
-
+    let stringfiedAllProduct = JSON.stringify(allProducts);
+    localStorage.setItem('products', stringfiedAllProduct);
   }
 }
 function renderResults() {
