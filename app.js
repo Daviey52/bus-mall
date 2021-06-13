@@ -6,12 +6,14 @@ let clicks = 0;
 let clicksAllowed = 25;
 let renderUniqueQueue = [];
 
+//Access to the DOM
 let myContainer = document.querySelector('section');
 let myButton = document.querySelector('div');
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:last-child');
 
+//constructor
 function Product(name, fileExtension = 'jpg') {
   this.name = name;
   this.src = `assets/assets/${name}.${fileExtension}`;
@@ -26,7 +28,7 @@ if (retrievedAllProduct) {
   let parsedAllProduct = JSON.parse(retrievedAllProduct);
   allProducts = parsedAllProduct;
 } else {
-
+  //intatiation of new products
   new Product('boots');
   new Product('sweep', 'png');
   new Product('bag');
@@ -46,11 +48,13 @@ if (retrievedAllProduct) {
   new Product('unicorn');
   new Product('water-can');
   new Product('wine-glass');
-}
 
+}
+//selecting random number
 function selectRandomProductIndex() {
   return Math.floor(Math.random() * allProducts.length);
 }
+// asigning unique number to images
 function renderProducts() {
   while (renderUniqueQueue.length < 6) {
     let newIndex = selectRandomProductIndex();
@@ -96,6 +100,7 @@ function handleProductRender(event) {
     localStorage.setItem('products', stringfiedAllProduct);
   }
 }
+//displaying results
 function renderResults() {
   let ul = document.querySelector('ul');
   for (let i = 0; i < allProducts.length; i++) {
@@ -104,7 +109,7 @@ function renderResults() {
     ul.appendChild(li);
   }
 }
-
+// event listener
 function handleButtonClick(event) {//eslint-disable-line
   if (clicks === clicksAllowed) {
     renderResults();
@@ -124,7 +129,7 @@ function renderChart() {
     viewsArray.push(allProducts[i].views);
     namesArray.push(allProducts[i].name);
   }
-
+  // creating a bar graph
   let chartNew = {
     type: 'bar',
     data: {
